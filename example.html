@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+</head>
+<body>
+    <button type="button" onClick="init()">init</button>
+    <button type="button" onClick="login()">login</button>
+</body>
+<script type="text/javascript" src="pxLib.min.js" id="pxLib"></script>
+<script>
+    //mainNet 1:ETH,56:BSC,137:Polygon,1203:PlanckX 
+    //testNet 3:ETH,97:BSC,80001:Polygon,1204:PlanckX
+    function init(){
+        pxsdk = new Pxsdk();
+        // prod url: "https://api.planckx.io/v1/api/sdk/"
+        // dev url: "http://192.168.1.188:10005/v1/api/sdk/"
+        pxsdk.init("http://192.168.1.188:10005/v1/api/sdk/",function(err,address){
+            if(err){
+                console.log(err);
+            }else{
+                console.log(address);
+            }
+        });
+    }
+    function login(){
+        if(pxsdk){
+            pxsdk.sendSign(function(err,result){
+                if(err){
+                    console.log(err);
+                    return;
+                }
+                console.log(result);
+                //set access_key,playerId
+                pxsdk.login("GIQaHZF1","1",result.address,result.nonce,result.signature,function(err,result){
+                    if(err){
+                        console.log(err);
+                        return;
+                    }
+                    console.log(result);
+                    pxsdk.getCurrTokenList(function(err,result){
+                        if(err){
+                            console.log(err);
+                            return;
+                        }
+                        console.log(result);
+                        // choose tokenContractAddress
+                        // 0x0000000000000000000000000000000000000000 is coin
+                        // other is token
+                    });
+                });
+            });
+            // Main chain wallet
+            // pxsdk.transferNFT(8,"0x6525C0B3dFac8A9236Bf76c76e3a26c7d909B9Ad",function(err,result){
+            //     if(err){
+            //         console.log(err);
+            //         return;
+            //     }
+            //     console.log(result);
+            // });
+            // pxsdk.getApproveBuyNFT(8,function(err,result){
+            //     if(err){
+            //         console.log(err);
+            //         if(err == "no approve"){
+            //             pxsdk.approveBuyNFT(8,false,function(err,result){
+            //                 if(err){
+            //                     console.log(err);
+            //                     return;
+            //                 }
+            //                 console.log(result);
+            //             });
+            //         }else if(err == "not enough approve"){
+            //             pxsdk.approveBuyNFT(8,true,function(err,result){
+            //                 if(err){
+            //                     console.log(err);
+            //                     return;
+            //                 }
+            //                 console.log(result);
+            //             });
+            //         }
+            //         return;
+            //     }
+            //     pxsdk.buyNFT(8,function(err,result){
+            //         if(err){
+            //             console.log(err);
+            //             return;
+            //         }
+            //         console.log(result);
+            //     });
+            // });
+            // pxsdk.getApproveSellNFT(8,function(err,result){
+            //     if(err){
+            //         console.log(err);
+            //         if(err == "no approve"){
+            //             pxsdk.approveSellNFT(8,function(err,result){
+            //                 if(err){
+            //                     console.log(err);
+            //                     return;
+            //                 }
+            //                 console.log(result);
+            //             });
+            //         }
+            //         return;
+            //     }
+            //     // choose tokenContractAddress
+            //     // 0x0000000000000000000000000000000000000000 is coin
+            //     // other is token
+            //     pxsdk.sellNFT(8,"0x0000000000000000000000000000000000000000",1000000000000000,function(err,result){
+            //         if(err){
+            //             console.log(err);
+            //             return;
+            //         }
+            //         console.log(result);
+            //     });
+            // });
+            // pxsdk.pullNFT(8,function(err,result){
+            //     if(err){
+            //         console.log(err);
+            //         return;
+            //     }
+            //     console.log(result);
+            // });
+            // Private chain wallet
+            // ...
+        }
+    }
+</script>
+</html>
+
+
+                        
