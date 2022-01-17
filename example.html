@@ -13,13 +13,11 @@
 </body>
 <script type="text/javascript" src="pxLib.min.js" id="pxLib"></script>
 <script>
-    //mainNet 1:ETH,56:BSC,137:Polygon,1203:PlanckX 
-    //testNet 3:ETH,97:BSC,80001:Polygon,1204:PlanckX
+    //mainNet 1:ETH,56:BSC,137:Polygon
+    //testNet 3:ETH,97:BSC,80001:Polygon
     function init(){
         pxsdk = new Pxsdk();
-        // prod url: "https://api.planckx.io/v1/api/sdk/"
-        // dev url: "http://192.168.1.188:10005/v1/api/sdk/"
-        pxsdk.init("http://192.168.1.188:10005/v1/api/sdk/",function(err,address){
+        pxsdk.init("https://api.planckx.io/v1/api/sdk/",function(err,address){
             if(err){
                 console.log(err);
             }else{
@@ -36,7 +34,7 @@
                 }
                 console.log(result);
                 //set access_key,playerId
-                pxsdk.login("GIQaHZF1","1",result.address,result.nonce,result.signature,function(err,result){
+                pxsdk.login("API_KEY","Player_Id",result.address,result.nonce,result.signature,function(err,result){
                     if(err){
                         console.log(err);
                         return;
