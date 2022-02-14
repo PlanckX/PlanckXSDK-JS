@@ -88,50 +88,22 @@ and include `pxLib.min.js` in your html file.
     pxsdk.transferNFT(tokenId,toAddress,callback)
 ````
 
-- Query NFT buy Approve by TokenId
+- Query NFT sell Approve by TokenIds
 ````javascript
    /**
-     * @param tokenId:Number
+     * @param tokenIds:Array<Number>
      * @param callback:function.
      */
-    pxsdk.getApproveBuyNFT(tokenId,callback)
+    pxsdk.getApproveSellNFTBox(tokenIds,callback)
 ````
 
-- Approve NFT buy by TokenId
+- Approve NFT sell by TokenIds
 ````javascript
    /**
-     * @param tokenId:Number
-     * @param isClear:Boolean
+     * @param tokenIds:Array<Number>
      * @param callback:function.
      */
-    pxsdk.approveBuyNFT(tokenId,isClear,callback)
-````
-
-- Buy NFT by TokenId
-````javascript
-   /**
-     * @param tokenId:Number
-     * @param callback:function.
-     */
-    pxsdk.buyNFT(tokenId,callback)
-````
-
-- Query NFT sell Approve by TokenId
-````javascript
-   /**
-     * @param tokenId:Number
-     * @param callback:function.
-     */
-    pxsdk.getApproveSellNFT(tokenId,callback)
-````
-
-- Approve NFT sell by TokenId
-````javascript
-   /**
-     * @param tokenId:Number
-     * @param callback:function.
-     */
-    pxsdk.approveSellNFT(tokenId,callback)
+    pxsdk.approveSellNFTBox(tokenIds,callback)
 ````
 
 - Query Current TokenList for Sell Parameter
@@ -142,23 +114,142 @@ and include `pxLib.min.js` in your html file.
     pxsdk.getCurrTokenList(callback)
 ````
 
-- Sell NFT by TokenId
+- Sell NFT by tokenIds
 ````javascript
    /**
-     * @param tokenId:Number
+     * @param tokenIds:Array<Number>
+     * @param tokenAddress:String
+     * @param amounts:Array<Number>
+     * @param callback:function.
+     */
+    pxsdk.sellNFTBox(tokenIds,tokenAddress,amounts,callback)
+````
+
+- Query NFT buy Approve by BoxId
+````javascript
+   /**
+     * @param boxId:Number
+     * @param callback:function.
+     */
+    pxsdk.getApproveBuyNFTBox(boxId,callback)
+````
+
+- Approve NFT buy by BoxId
+````javascript
+   /**
+     * @param boxId:Number
+     * @param isClear:Boolean
+     * @param callback:function.
+     */
+    pxsdk.approveBuyNFTBox(boxId,isClear,callback)
+````
+
+- Buy NFT by BoxId
+````javascript
+   /**
+     * @param boxId:Number
+     * @param callback:function.
+     */
+    pxsdk.buyNFTBox(boxId,callback)
+````
+
+- Pull NFT by BoxId
+````javascript
+   /**
+     * @param boxId:Number
+     * @param callback:function.
+     */
+    pxsdk.pullNFTBox(boxId,callback)
+````
+
+- Query Selling BoxIds NFT
+````javascript
+   /**
+     * @param callback:function.
+     */
+    pxsdk.getSellingBoxIds(callback)
+````
+
+- Query Selling BoxIds NFT by Owner
+````javascript
+   /**
+     * @param owner:String
+     * @param callback:function.
+     */
+    pxsdk.getSellingBoxIdsOfOwner(owner,callback)
+````
+
+- Query Selling BoxId NFT by TokenId
+````javascript
+   /**
+     * @param TokenId:String
+     * @param callback:function.
+     */
+    pxsdk.getSellingBoxIdOfTokenId(TokenId,callback)
+````
+
+- Query NFTContractAddress NFT by BoxId
+````javascript
+   /**
+     * @param boxId:Number
+     * @param callback:function.
+     */
+    pxsdk.getNFTContractBox(boxId,callback)
+````
+
+- Query Owner NFT by BoxId
+````javascript
+   /**
+     * @param boxId:Number
+     * @param callback:function.
+     */
+    pxsdk.getOwnerBox(boxId,callback)
+````
+
+- Query TokenIds NFT by BoxId
+````javascript
+   /**
+     * @param boxId:Number
+     * @param callback:function.
+     */
+    pxsdk.getTokenIdsBox(boxId,callback)
+````
+
+- Query TokenAddress NFT by BoxId
+````javascript
+   /**
+     * @param boxId:Number
+     * @param callback:function.
+     */
+    pxsdk.getTokenAddressBox(boxId,callback)
+````
+
+- Query Approve by TokenAddress
+````javascript
+   /**
      * @param tokenAddress:String
      * @param amount:Number
      * @param callback:function.
      */
-    pxsdk.sellNFT(tokenId,tokenAddress,amount,callback)
+    pxsdk.getApproveOrderBox(tokenAddress,amount,callback)
 ````
 
-- Pull NFT by TokenId
+- Approve TokenAddress
 ````javascript
    /**
-     * @param tokenId:Number
+     * @param tokenAddress:String
+     * @param amount:Number
+     * @param isClear:Boolean
      * @param callback:function.
      */
-    pxsdk.pullNFT(tokenId,callback)
+    pxsdk.approveOrderBox(tokenAddress,amount,isClear,callback)
 ````
 
+- Order by BoxId
+````javascript
+   /**
+     * @param boxId:Number
+     * @param callback:function.
+     */
+    pxsdk.setOrderBox(boxId,tokenAddress,amount,callback)
+````

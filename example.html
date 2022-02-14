@@ -13,11 +13,13 @@
 </body>
 <script type="text/javascript" src="pxLib.min.js" id="pxLib"></script>
 <script>
-    //mainNet 1:ETH,56:BSC,137:Polygon
-    //testNet 3:ETH,97:BSC,80001:Polygon
+    //mainNet 1:ETH,56:BSC,137:Polygon,1203:PlanckX 
+    //testNet 3:ETH,97:BSC,80001:Polygon,1204:PlanckX
     function init(){
         pxsdk = new Pxsdk();
-        pxsdk.init("https://api.planckx.io/v1/api/sdk/",function(err,address){
+        // prod url: "https://api.planckx.io/v1/api/sdk/"
+        // dev url: "https://testnet.api.planckx.io/v1/api/sdk/"
+        pxsdk.init("https://testnet.api.planckx.io/v1/api/sdk/",function(err,address){
             if(err){
                 console.log(err);
             }else{
@@ -33,8 +35,8 @@
                     return;
                 }
                 console.log(result);
-                //set access_key,playerId
-                pxsdk.login("API_KEY","Player_Id",result.address,result.nonce,result.signature,function(err,result){
+                //set API_Key,PlayerId
+                pxsdk.login(API_Key,PlayerId,result.address,result.nonce,result.signature,function(err,result){
                     if(err){
                         console.log(err);
                         return;
@@ -52,49 +54,19 @@
                     });
                 });
             });
-            // Main chain wallet
-            // pxsdk.transferNFT(8,"0x6525C0B3dFac8A9236Bf76c76e3a26c7d909B9Ad",function(err,result){
+            // Public wallet
+            // pxsdk.transferNFT(tokenId,"0x6525C0B3dFac8A9236Bf76c76e3a26c7d909B9Ad",function(err,result){
             //     if(err){
             //         console.log(err);
             //         return;
             //     }
             //     console.log(result);
             // });
-            // pxsdk.getApproveBuyNFT(8,function(err,result){
+            // pxsdk.getApproveSellNFTBox(tokenIds,function(err,result){
             //     if(err){
             //         console.log(err);
             //         if(err == "no approve"){
-            //             pxsdk.approveBuyNFT(8,false,function(err,result){
-            //                 if(err){
-            //                     console.log(err);
-            //                     return;
-            //                 }
-            //                 console.log(result);
-            //             });
-            //         }else if(err == "not enough approve"){
-            //             pxsdk.approveBuyNFT(8,true,function(err,result){
-            //                 if(err){
-            //                     console.log(err);
-            //                     return;
-            //                 }
-            //                 console.log(result);
-            //             });
-            //         }
-            //         return;
-            //     }
-            //     pxsdk.buyNFT(8,function(err,result){
-            //         if(err){
-            //             console.log(err);
-            //             return;
-            //         }
-            //         console.log(result);
-            //     });
-            // });
-            // pxsdk.getApproveSellNFT(8,function(err,result){
-            //     if(err){
-            //         console.log(err);
-            //         if(err == "no approve"){
-            //             pxsdk.approveSellNFT(8,function(err,result){
+            //             pxsdk.approveSellNFTBox(tokenIds,function(err,result){
             //                 if(err){
             //                     console.log(err);
             //                     return;
@@ -107,7 +79,7 @@
             //     // choose tokenContractAddress
             //     // 0x0000000000000000000000000000000000000000 is coin
             //     // other is token
-            //     pxsdk.sellNFT(8,"0x0000000000000000000000000000000000000000",1000000000000000,function(err,result){
+            //     pxsdk.sellNFTBox(tokenIds,tokenContractAddress,amounts,function(err,result){
             //         if(err){
             //             console.log(err);
             //             return;
@@ -115,15 +87,75 @@
             //         console.log(result);
             //     });
             // });
-            // pxsdk.pullNFT(8,function(err,result){
+            // pxsdk.getApproveBuyNFTBox(boxId,function(err,result){
+            //     if(err){
+            //         console.log(err);
+            //         if(err == "no approve"){
+            //             pxsdk.approveBuyNFTBox(boxId,false,function(err,result){
+            //                 if(err){
+            //                     console.log(err);
+            //                     return;
+            //                 }
+            //                 console.log(result);
+            //             });
+            //         }else if(err == "not enough approve"){
+            //             pxsdk.approveBuyNFTBox(boxId,true,function(err,result){
+            //                 if(err){
+            //                     console.log(err);
+            //                     return;
+            //                 }
+            //                 console.log(result);
+            //             });
+            //         }
+            //         return;
+            //     }
+            //     pxsdk.buyNFTBox(boxId,function(err,result){
+            //         if(err){
+            //             console.log(err);
+            //             return;
+            //         }
+            //         console.log(result);
+            //     });
+            // });
+            // pxsdk.pullNFTBox(boxId,function(err,result){
             //     if(err){
             //         console.log(err);
             //         return;
             //     }
             //     console.log(result);
             // });
-            // Private chain wallet
-            // ...
+            // pxsdk.getApproveOrderBox(tokenAddress,amount,function(err,result){
+            //     if(err){
+            //         console.log(err);
+            //         if(err == "no approve"){
+            //             pxsdk.approveOrderBox(tokenAddress,amount,false,function(err,result){
+            //                 if(err){
+            //                     console.log(err);
+            //                     return;
+            //                 }
+            //                 console.log(result);
+            //             });
+            //         }else if(err == "not enough approve"){
+            //             pxsdk.approveOrderBox(tokenAddress,amount,true,function(err,result){
+            //                 if(err){
+            //                     console.log(err);
+            //                     return;
+            //                 }
+            //                 console.log(result);
+            //             });
+            //         }
+            //         return;
+            //     }
+            //     pxsdk.setOrderBox(boxId,tokenAddress,amount,function(err,result){
+            //         if(err){
+            //             console.log(err);
+            //             return;
+            //         }
+            //         console.log(result);
+            //     });
+            // });
+            // Private wallet
+            // ...please look README.md
         }
     }
 </script>
