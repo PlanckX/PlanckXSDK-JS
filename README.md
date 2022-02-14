@@ -4,9 +4,9 @@
 
 The PlanckX SDK  contains  the basic SDK tools. You can match the PlanckX platform account with your game account, And link the NFT assets holder（Usually the player who bought the NFT） by the asset owner to the game for use.
 
-### Matemask
+### MetaMask
 
-You need to install Matemask plugin
+You need to install Metamask plugin
 
 ### In the Browser
 
