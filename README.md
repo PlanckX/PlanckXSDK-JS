@@ -153,6 +153,16 @@ and include `pxLib.min.js` in your html file.
     pxsdk.buyNFTBox(boxId,callback)
 ````
 
+- Buy NFT by TokenIds
+````javascript
+   /**
+     * @param boxId:Number
+     * @param tokenIds:Array<Number>
+     * @param callback:function.
+     */
+    pxsdk.buyNFTBoxByTokenIds(boxId,tokenIds,callback)
+````
+
 - Pull NFT by BoxId
 ````javascript
    /**
@@ -249,7 +259,21 @@ and include `pxLib.min.js` in your html file.
 ````javascript
    /**
      * @param boxId:Number
+     * @param tokenAddress:String
+     * @param amount:Number
      * @param callback:function.
      */
     pxsdk.setOrderBox(boxId,tokenAddress,amount,callback)
+````
+
+- Order by tokenIds
+````javascript
+   /**
+     * @param boxId:Number
+     * @param tokenIds:Array<Number>
+     * @param tokenAddress:String
+     * @param amounts:Array<Number>
+     * @param callback:function.
+     */
+    pxsdk.setOrderBoxByTokenIds(boxId,tokenIds,tokenAddress,amounts,callback)
 ````
